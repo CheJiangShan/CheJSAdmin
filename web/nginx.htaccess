@@ -1,0 +1,15 @@
+location / 
+{
+     index  index.html index.htm index.php;
+
+     if (!-e $request_filename) {
+           rewrite ^/backend(.*)$ /backend/index.php?s=$1 last;
+           rewrite ^/wechat(.*)$ /wechat/index.php?s=$1 last;
+           rewrite ^/api(.*)$ /api/index.php?s=$1 last;
+           rewrite ^/oauth2(.*)$ /oauth2/index.php?s=$1 last;
+           rewrite ^/(.*)$ /index.php?s=$1 last;
+           break;
+     }
+         
+     #autoindex  on;
+}
