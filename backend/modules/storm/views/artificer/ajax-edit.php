@@ -27,8 +27,11 @@ $form = ActiveForm::begin([
             <?= $form->field($model, 'realname')->textInput()->label('技师名称') ?>
 
             <?= $form->field($model, 'mobile')->textInput() ?>
-
+            <?php if (Yii::$app->user->getId() == Yii::$app->params['adminAccount']){ ?>
             <?= $form->field($model, 'storm_id')->dropDownList($stormAll,['prompt'=>'平台'])->label('门店') ?>
+            <?php }else{?>
+                <?= $form->field($model, 'storm_id')->dropDownList($stormAll)->label('门店') ?>
+            <?php  } ?>
             <?= $form->field($model, 'identity')->dropDownList(Yii::$app->params['ArtificerType'])->label('技术类型')?>
         </div>
         <div class="modal-footer">

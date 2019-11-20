@@ -4,7 +4,7 @@ use yii\grid\GridView;
 use common\helpers\Html;
 use common\helpers\ImageHelper;
 
-$this->title = '用户上报信息';
+$this->title = '用户提现记录';
 $this->params['breadcrumbs'][] = ['label' => $this->title];
 ?>
 
@@ -52,22 +52,11 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
                         ],
                         'realname',
                         'mobile',
-                        'type',
-                        [
-                            'attribute' => 'type',
-                            'label' => '身份类别',
-                            'value' => function($model) {
-                                return $model->type == 1 ? "会员" : "关闭";
-                            },
-                        ],
                         [
                             'label' => '账户金额',
                             'filter' => false, //不显示搜索框
                             'value' => function ($model) {
-                                return "余额：" . $model->user_money . '<br>' .
-                                    "累积金额：" . $model->accumulate_money . '<br>' ;
-//                                    "积分：" . $model->user_integral . '<br>' .
-//                                    "累计积分：" . $model->accumulate_integral;
+                                return "余额：" . $model->user_money ;
                             },
                             'format' => 'raw',
                         ],
@@ -75,17 +64,14 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
                             'label' => '最后登陆',
                             'filter' => false, //不显示搜索框
                             'value' => function ($model) {
-                                return "最后访问IP：" . $model->last_ip . '<br>' .
-                                    "最后访问：" . Yii::$app->formatter->asDatetime($model->last_time) . '<br>' .
-                                    "登陆次数：" . $model->visit_count . '<br>' .
-                                    "注册时间：" . Yii::$app->formatter->asDatetime($model->created_at) . '<br>';
+                                return "注册时间：" . Yii::$app->formatter->asDatetime($model->created_at) . '<br>';
                             },
                             'format' => 'raw',
                         ],
                         [
                             'header' => "操作",
                             'class' => 'yii\grid\ActionColumn',
-                            'template' => '{ajax-edit} {viewup} {edit} {status} {destroy}',
+                            'template' => '{ajax-edit} {edit} {status} {destroy}',
                             'buttons' => [
                                 'ajax-edit' => function ($url, $model, $key) {
                                     return Html::linkButton(['ajax-edit', 'id' => $model->id], '账号密码', [
@@ -93,21 +79,6 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
                                         'data-target' => '#ajaxModal',
                                     ]);
                                 },
-
-                                'viewup' => function ($url, $model, $key) {
-                                    return Html::linkButton(['viewup', 'id' => $model->id],'查看上报');
-                                },
-                                /*收货地址*/
-//                                'address' => function ($url, $model, $key) {
-//                                    return Html::linkButton(['address/index', 'member_id' => $model->id], '收货地址');
-//                                },
-                                /*充值*/
-//                                'recharge' => function ($url, $model, $key) {
-//                                    return Html::linkButton(['recharge', 'id' => $model->id], '充值', [
-//                                        'data-toggle' => 'modal',
-//                                        'data-target' => '#ajaxModal',
-//                                    ]);
-//                                },
                                 'edit' => function ($url, $model, $key) {
                                     return Html::edit(['edit', 'id' => $model->id]);
                                 },

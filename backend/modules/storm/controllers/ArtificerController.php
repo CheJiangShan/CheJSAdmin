@@ -101,7 +101,7 @@ class ArtificerController extends BaseController
         if (Yii::$app->user->getId() == Yii::$app->params['adminAccount']) {
             $storm_all_a = Storm::find()->where(['>=', 'status', StatusEnum::DISABLED])->asArray()->select('id,storm_name')->all();
         }else{
-            $storm_all_a = Storm::find()->where(['>=', 'status', StatusEnum::DISABLED])->andWhere(['storm_id'=> $this->getStormId()])->asArray()->select('id,storm_name')->all();
+            $storm_all_a = Storm::find()->where(['>=', 'status', StatusEnum::DISABLED])->andWhere(['id'=> $this->getStormId()])->asArray()->select('id,storm_name')->all();
         }
         $storm_all = ArrayHelper::map($storm_all_a,'id','storm_name');
         return $this->renderAjax($this->action->id, [
