@@ -71,18 +71,18 @@ $this->params['breadcrumbs'][] = ['label' =>  $this->title];
                         <td width="150px">Yii2版本</td>
                         <td><?= Yii::getVersion(); ?><?php if (YII_DEBUG) echo ' (开发模式)'; ?></td>
                     </tr>
-                    <tr>
-                        <td>官网</td>
-                        <td><?= Yii::$app->params['exploitOfficialWebsite']?></td>
-                    </tr>
-                    <tr>
-                        <td>官方QQ群</td>
-                        <td><a href="https://jq.qq.com/?_wv=1027&amp;k=4BeVA2r" target="_blank">655084090</a></td>
-                    </tr>
-                    <tr>
-                        <td>GitHub</td>
-                        <td><?= Yii::$app->params['exploitGitHub']?></td>
-                    </tr>
+<!--                    <tr>-->
+<!--                        <td>官网</td>-->
+<!--                        <td>--><?//= Yii::$app->params['exploitOfficialWebsite']?><!--</td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                        <td>官方QQ群</td>-->
+<!--                        <td><a href="https://jq.qq.com/?_wv=1027&amp;k=4BeVA2r" target="_blank">655084090</a></td>-->
+<!--                    </tr>-->
+<!--                    <tr>-->
+<!--                        <td>GitHub</td>-->
+<!--                        <td>--><?//= Yii::$app->params['exploitGitHub']?><!--</td>-->
+<!--                    </tr>-->
                     <tr>
                         <td>开发者</td>
                         <td><?= Yii::$app->params['exploitDeveloper']?></td>

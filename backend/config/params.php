@@ -22,10 +22,10 @@ return [
     'user.log.except.code' => [404], // 不记录的code
 
     /** ------ 开发者信息 ------ **/
-    'exploitDeveloper' => '简言',
-    'exploitFullName' => 'RageFrame应用开发引擎',
-    'exploitOfficialWebsite' => '<a href="http://www.rageframe.com" target="_blank">www.rageframe.com</a>',
-    'exploitGitHub' => '<a href="https://github.com/jianyan74/rageframe2" target="_blank">https://github.com/jianyan74/rageframe2</a>',
+    'exploitDeveloper' => 'CheJS',
+    'exploitFullName' => 'CheJS应用开发引擎',
+//    'exploitOfficialWebsite' => '<a href="http://www.rageframe.com" target="_blank">www.rageframe.com</a>',
+//    'exploitGitHub' => '<a href="https://github.com/jianyan74/rageframe2" target="_blank">https://github.com/jianyan74/rageframe2</a>',
 
     /** ------ 备份配置配置 ------ **/
     'dataBackupPath' => Yii::getAlias('@root') . '/console/backup', // 数据库备份根路径
