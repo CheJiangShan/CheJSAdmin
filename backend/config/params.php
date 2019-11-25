@@ -2,8 +2,8 @@
 
 return [
     'adminEmail' => 'admin@example.com',
-    'adminAcronym' => 'CJS',
-    'adminTitle' => 'CheJs',
+    'adminAcronym' => '江山',
+    'adminTitle' => '车江山',
     'adminDefaultHomePage' => ['main/system'], // 默认主页
 
     /** ------ 总管理员配置 ------ **/
