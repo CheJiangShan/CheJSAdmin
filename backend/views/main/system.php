@@ -28,14 +28,16 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
     <div class="col-lg-12">
         地图：
         <div id="container" style="height: 1000px;"></div>
+        <div id="status" style="display: none"></div>
+        <div id="result" style="display: none"></div>
     </div>
 </div>
 
 
 <script type="text/javascript">
     var map = new AMap.Map("container", {
-        zoom: 13,
-        // center: [116.397428, 39.90923],
+        zoom: 12,
+        // center: [113.68133,34.72864],
         resizeEnable: true
     });
 
@@ -49,12 +51,9 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
 
         });
         map.addControl(geolocation);
-        geolocation.getCurrentPosition(function(status,result){
-            if(status=='complete'){
-                onComplete(result)
-            }
-        });
+
     });
+
     var lnglats = <?= json_encode($report)?>;
     var markers = [];
     var infoWindow = new AMap.InfoWindow({offset: new AMap.Pixel(0, -30)});
@@ -63,8 +62,8 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
         // 创建点实例
         var marker = new AMap.Marker({
             position: new AMap.LngLat(lnglat['longitude'], lnglat['latitude']),
-            // icon: 'https://webapi.amap.com/theme/v1.3/markers/n/mark_b' + (i + 1) + '.png',
-            icon: 'https://a.amap.com/jsapi_demos/static/resource/img/pin.png',
+            icon: 'https://webapi.amap.com/theme/v1.3/markers/n/mark_b.png',
+            // icon: 'https://a.amap.com/jsapi_demos/static/resource/img/pin.png',
             extData: {
                 id: i + 1
             }
@@ -84,7 +83,6 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
     };
     // 添加覆盖物群组
     function addOverlayGroup() {
-
         map.add(overlayGroups);
     }
 </script>

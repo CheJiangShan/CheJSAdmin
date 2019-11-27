@@ -2,9 +2,8 @@
 
 use yii\grid\GridView;
 use common\helpers\Html;
-use common\helpers\ImageHelper;
 
-$this->title = '用户提现记录';
+$this->title = '用户提现列表';
 $this->params['breadcrumbs'][] = ['label' => $this->title];
 ?>
 
@@ -37,29 +36,25 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
                             'attribute' => 'bankname',
                             'contentOptions' => ['width'=>'140'],
                         ],
+                        'bankcard',
                         [
-                            'attribute' => 'bankcard',
-                            'contentOptions' => ['width'=>'180'],
+                            'attribute' => 'user_id',
+                            'label' => '提现用户',
+                            'contentOptions' => [
+                                'width'=>'180'
+                            ],
+                            'filter' => Html::activeTextInput($searchModel, 'member_username', [
+                                    'class' => 'form-control',
+                                ]
+                            ),
+                            'value' => function ($model) {
+                                return '提现人：'.$model->member->username.'<br/>'.'手机号：'.$model->member->mobile ;
+                            },
+                            'format' => 'raw',
                         ],
                         [
                             'attribute' => 'amount',
                             'contentOptions' => ['width'=>'100'],
-                        ],
-                        [
-                            'label' => '申请时间',
-                            'filter' => false, //不显示搜索框
-                            'value' => function ($model) {
-                                return Yii::$app->formatter->asDatetime($model->created_at) ;
-                            },
-                            'format' => 'raw',
-                        ],
-                        [
-                            'label' => '转账时间',
-                            'filter' => false, //不显示搜索框
-                            'value' => function ($model) {
-                                return Yii::$app->formatter->asDatetime($model->updated_at) ;
-                            },
-                            'format' => 'raw',
                         ],
                         [
                             'label' => '提现状态',
@@ -86,28 +81,42 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
                             },
                             'format' => 'raw',
                         ],
-//                        [
-//                            'header' => "操作",
-//                            'class' => 'yii\grid\ActionColumn',
-//                            'template' => '{ajax-edit} {edit} {status} {destroy}',
-//                            'buttons' => [
-//                                'ajax-edit' => function ($url, $model, $key) {
-//                                    return Html::linkButton(['ajax-edit', 'id' => $model->id], '账号密码', [
-//                                        'data-toggle' => 'modal',
-//                                        'data-target' => '#ajaxModal',
-//                                    ]);
-//                                },
-//                                'edit' => function ($url, $model, $key) {
-//                                    return Html::edit(['edit', 'id' => $model->id]);
-//                                },
-//                                'status' => function ($url, $model, $key) {
-//                                    return Html::status($model->status);
-//                                },
-//                                'destroy' => function ($url, $model, $key) {
-//                                    return Html::delete(['destroy', 'id' => $model->id]);
-//                                },
-//                            ],
-//                        ],
+
+                        [
+                            'label' => '添加时间',
+                            'filter' => false, //不显示搜索框
+                            'value' => function ($model) {
+                                return Yii::$app->formatter->asDatetime($model->created_at) ;
+                            },
+                            'format' => 'raw',
+                        ],
+                        [
+                            'header' => "操作",
+                            'class' => 'yii\grid\ActionColumn',
+                            'template' => '{RFSuccess} {ajax-edit} {destroy}',
+                            'buttons' => [
+                                'RFSuccess' => function ($url, $model, $key) {
+                                    if ($model->status != 3 && $model->status != 2) {
+                                        return Html::linkButton(['cash-with', 'id' => $model->id], '提现成功',[
+                                            'class' => 'btn btn-primary btn-sm',
+                                            'onclick' => "rfTwiceAffirm(this,'确定转账成功');return false;"
+                                        ]);
+                                    }
+                                },
+                                'ajax-edit' => function ($url, $model, $key) {
+                                      if ($model->status != 3 && $model->status != 2) {
+                                          return Html::linkButton(['ajax-edit', 'id' => $model->id], '提现失败', [
+                                              'data-toggle' => 'modal',
+                                              'data-target' => '#ajaxModal',
+                                          ]);
+                                      }
+
+                                },
+                                'destroy' => function ($url, $model, $key) {
+                                    return Html::delete(['destroy','id'=>$model->id],'删除');
+                                },
+                            ],
+                        ],
                     ],
                 ]); ?>
             </div>

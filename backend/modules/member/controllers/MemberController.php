@@ -2,6 +2,7 @@
 
 namespace backend\modules\member\controllers;
 
+use common\models\finance\Cashwith;
 use Yii;
 use common\models\base\SearchModel;
 use common\components\Curd;
@@ -25,6 +26,9 @@ class MemberController extends BaseController
      * @var \yii\db\ActiveRecord
      */
     public $modelClass = Member::class;
+
+    /*用户提现记录*/
+    public  $cwmodelClass = Cashwith::class;
 
     /**
      * 首页
@@ -129,7 +133,7 @@ class MemberController extends BaseController
     public function actionViewup($id)
     {
         $searchModel = new SearchModel([
-            'model' => $this->modelClass,
+            'model' => $this->cwmodelClass,
             'scenario' => 'default',
             'partialMatchAttributes' => ['realname', 'mobile'], // 模糊查询
             'defaultOrder' => [
@@ -141,9 +145,8 @@ class MemberController extends BaseController
         $dataProvider = $searchModel
             ->search(Yii::$app->request->queryParams);
         $dataProvider->query
-            ->andFilterWhere(['merchant_id' => $this->getMerchantId()])
             ->andWhere(['>=', 'status', StatusEnum::DISABLED])
-            ->andWhere(['=', 'type', 1]);
+            ->andWhere(['=', 'user_id', $id]);
 
         return $this->render($this->action->id, [
             'dataProvider' => $dataProvider,

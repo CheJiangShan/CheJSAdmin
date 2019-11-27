@@ -53,7 +53,7 @@ class FaultController extends BaseController
         }else{
             $dataProvider->query
                 ->andFilterWhere(['id' => $this->getStormId()])
-                ->andWhere(['>=', 'status', StatusEnum::DISABLED])->with('members');
+                ->andWhere(['>=', $this->modelClass::tableName().'status', StatusEnum::DISABLED])->with('members');
         }
         return $this->render($this->action->id, [
             'dataProvider' => $dataProvider,

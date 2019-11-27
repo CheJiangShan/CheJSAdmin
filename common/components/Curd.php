@@ -88,6 +88,7 @@ trait Curd
         return $this->message("删除失败", $this->redirect(['index']), 'error');
     }
 
+
     /**
      * 删除
      *

@@ -37,6 +37,10 @@ return [
         'goods' => [
             'class' => 'backend\modules\goods\Module',
         ],
+        /** ------ 商品模块 ------ **/
+        'finance' => [
+            'class' => 'backend\modules\finance\Module',
+        ],
         /** ------ oauth2 ------ **/
         'oauth2' => [
             'class' => 'backend\modules\oauth2\Module',
