@@ -26,6 +26,10 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
                             'visible' => false, // 不显示#
                         ],
                         [
+                            'attribute' => 'id',
+                            'contentOptions' => ['width'=>'100'],
+                        ],
+                        [
                             'attribute' => 'accountname',
                             'contentOptions' => ['width'=>'100'],
                         ],
@@ -86,28 +90,7 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
                             },
                             'format' => 'raw',
                         ],
-//                        [
-//                            'header' => "操作",
-//                            'class' => 'yii\grid\ActionColumn',
-//                            'template' => '{ajax-edit} {edit} {status} {destroy}',
-//                            'buttons' => [
-//                                'ajax-edit' => function ($url, $model, $key) {
-//                                    return Html::linkButton(['ajax-edit', 'id' => $model->id], '账号密码', [
-//                                        'data-toggle' => 'modal',
-//                                        'data-target' => '#ajaxModal',
-//                                    ]);
-//                                },
-//                                'edit' => function ($url, $model, $key) {
-//                                    return Html::edit(['edit', 'id' => $model->id]);
-//                                },
-//                                'status' => function ($url, $model, $key) {
-//                                    return Html::status($model->status);
-//                                },
-//                                'destroy' => function ($url, $model, $key) {
-//                                    return Html::delete(['destroy', 'id' => $model->id]);
-//                                },
-//                            ],
-//                        ],
+
                     ],
                 ]); ?>
             </div>

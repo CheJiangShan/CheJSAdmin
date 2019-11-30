@@ -12,10 +12,10 @@ use common\enums\StatusEnum;
 use backend\controllers\BaseController;
 
 /**
- * 外拓人员
+ *   技师列表....
  *
  * Class MemberController
- * @package backend\modules\member\controllers
+ * @package backend\modules\storm\controllers
  * @author cuicui
  */
 class ArtificerController extends BaseController

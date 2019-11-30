@@ -48,22 +48,20 @@ $this->params['breadcrumbs'][] = ['label' => $this->title];
             buttonPosition:'RB',    //定位按钮的停靠位置
             buttonOffset: new AMap.Pixel(10, 20),//定位按钮与设置的停靠位置的偏移量，默认：Pixel(10, 20)
             zoomToAccuracy: true,   //定位成功后是否自动调整地图视野到定位点
-
         });
         map.addControl(geolocation);
-
     });
-
     var lnglats = <?= json_encode($report)?>;
     var markers = [];
+    // 创建一个 Icon
+    /*'https://webapi.amap.com/theme/v1.3/markers/n/mark_b.png',*/
     var infoWindow = new AMap.InfoWindow({offset: new AMap.Pixel(0, -30)});
     for (var i = 0; i < lnglats.length; i++) {
         var lnglat = lnglats[i];
         // 创建点实例
         var marker = new AMap.Marker({
             position: new AMap.LngLat(lnglat['longitude'], lnglat['latitude']),
-            icon: 'https://webapi.amap.com/theme/v1.3/markers/n/mark_b.png',
-            // icon: 'https://a.amap.com/jsapi_demos/static/resource/img/pin.png',
+            icon: 'https://api.chejiangshan.com/sos.png',
             extData: {
                 id: i + 1
             }
